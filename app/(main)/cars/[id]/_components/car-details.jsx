@@ -227,7 +227,7 @@ export function CarDetails({ car, testDriveInfo }) {
                     for 60 months
                   </div>
                   <div className="text-xs text-gray-500 mt-1">
-                    *Based on $0 down payment and 4.5% interest rate
+                    *Based on ₹0 down payment and 4.5% interest rate
                   </div>
                 </CardContent>
               </Card>
@@ -251,9 +251,14 @@ export function CarDetails({ car, testDriveInfo }) {
                 Our representatives are available to answer all your queries
                 about this vehicle.
               </p>
-              <a href="mailto:help@vehiql.in">
-                <Button variant="outline" className="w-full">
-                  Request Info
+              <a 
+                href="https://wa.me/919876543210?text=Hi, I need more information about this car: {car.year} {car.make} {car.model}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="w-full flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4" />
+                  Chat on WhatsApp
                 </Button>
               </a>
             </CardContent>

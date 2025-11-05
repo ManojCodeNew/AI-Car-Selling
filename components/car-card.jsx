@@ -59,8 +59,8 @@ export const CarCard = ({ car }) => {
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition group">
-      <div className="relative h-48">
+    <div className="modern-card overflow-hidden group cursor-pointer">
+      <div className="relative h-56">
         {car.images && car.images.length > 0 ? (
           <div className="relative w-full h-full">
             <Image
@@ -76,10 +76,8 @@ export const CarCard = ({ car }) => {
           </div>
         )}
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className={`absolute top-2 right-2 bg-white/90 rounded-full p-1.5 ${
+        <button
+          className={`absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 transition-all duration-300 hover:scale-110 ${
             isSaved
               ? "text-red-500 hover:text-red-600"
               : "text-gray-600 hover:text-gray-900"
@@ -92,50 +90,48 @@ export const CarCard = ({ car }) => {
           ) : (
             <Heart className={isSaved ? "fill-current" : ""} size={20} />
           )}
-        </Button>
+        </button>
       </div>
 
-      <CardContent className="p-4">
-        <div className="flex flex-col mb-2">
-          <h3 className="text-lg font-bold line-clamp-1">
+      <div className="p-6">
+        <div className="flex flex-col mb-4">
+          <h3 className="text-xl font-bold line-clamp-1 text-gray-900 mb-2">
             {car.make} {car.model}
           </h3>
-          <span className="text-xl font-bold text-blue-600">
-            ${car.price.toLocaleString()}
+          <span className="text-2xl font-bold text-yellow-500">
+            ₹{car.price.toLocaleString()}
           </span>
         </div>
 
-        <div className="text-gray-600 mb-2 flex items-center">
-          <span>{car.year}</span>
+        <div className="text-gray-600 mb-4 flex items-center text-sm">
+          <span className="bg-gray-100 px-3 py-1 rounded-full">{car.year}</span>
           <span className="mx-2">•</span>
-          <span>{car.transmission}</span>
+          <span className="bg-gray-100 px-3 py-1 rounded-full">{car.transmission}</span>
           <span className="mx-2">•</span>
-          <span>{car.fuelType}</span>
+          <span className="bg-gray-100 px-3 py-1 rounded-full">{car.fuelType}</span>
         </div>
 
-        <div className="flex flex-wrap gap-1 mb-4">
-          <Badge variant="outline" className="bg-gray-50">
+        <div className="flex flex-wrap gap-2 mb-6">
+          <div className="bg-[#ffc107]/10 text-[#ffc107] px-3 py-1 rounded-full text-sm font-medium">
             {car.bodyType}
-          </Badge>
-          <Badge variant="outline" className="bg-gray-50">
+          </div>
+          <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
             {car.mileage.toLocaleString()} miles
-          </Badge>
-          <Badge variant="outline" className="bg-gray-50">
+          </div>
+          <div className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
             {car.color}
-          </Badge>
+          </div>
         </div>
 
-        <div className="flex justify-between">
-          <Button
-            className="flex-1"
-            onClick={() => {
-              router.push(`/cars/${car.id}`);
-            }}
-          >
-            View Car
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+        <button
+          className="modern-button w-full"
+          onClick={() => {
+            router.push(`/cars/${car.id}`);
+          }}
+        >
+          View Details
+        </button>
+      </div>
+    </div>
   );
 };

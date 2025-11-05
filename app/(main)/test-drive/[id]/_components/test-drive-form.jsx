@@ -11,6 +11,8 @@ import {
   Car,
   CheckCircle2,
   Loader2,
+  MessageCircle,
+  Phone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -102,11 +104,17 @@ export function TestDriveForm({ car, testDriveInfo }) {
           "h:mm a"
         )}`,
         notes: bookingResult?.data?.notes,
+        whatsappUrl: bookingResult?.whatsappUrl,
       });
       setShowConfirmation(true);
 
       // Reset form
       reset();
+
+      // Open WhatsApp if URL is provided
+      if (bookingResult?.whatsappUrl) {
+        window.open(bookingResult.whatsappUrl, '_blank');
+      }
     }
   }, [bookingResult, reset]);
 
@@ -241,8 +249,8 @@ export function TestDriveForm({ car, testDriveInfo }) {
               {car.year} {car.make} {car.model}
             </h3>
 
-            <div className="mt-2 text-xl font-bold text-blue-600">
-              ${car.price.toLocaleString()}
+            <div className="mt-2 text-xl font-bold text-yellow-600">
+              ₹{car.price.toLocaleString()}
             </div>
 
             <div className="mt-4 text-sm text-gray-500">
@@ -413,9 +421,9 @@ export function TestDriveForm({ car, testDriveInfo }) {
               </div>
 
               {/* Submit Button */}
-              <Button
+              <button
                 type="submit"
-                className="w-full"
+                className="modern-button w-full"
                 disabled={bookingInProgress}
               >
                 {bookingInProgress ? (
@@ -426,7 +434,7 @@ export function TestDriveForm({ car, testDriveInfo }) {
                 ) : (
                   "Book Test Drive"
                 )}
-              </Button>
+              </button>
             </form>
 
             {/* Instructions */}
@@ -490,11 +498,38 @@ export function TestDriveForm({ car, testDriveInfo }) {
               <div className="mt-4 bg-blue-50 p-3 rounded text-sm text-blue-700">
                 Please arrive 10 minutes early with your driver's license.
               </div>
+
+              {/* WhatsApp Contact */}
+              <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                <h4 className="font-semibold text-green-800 mb-2 flex items-center gap-2">
+                  <MessageCircle className="h-4 w-4" />
+                  Need to make changes or have questions?
+                </h4>
+                <div className="space-y-2">
+                  <a 
+                    href="https://wa.me/919876543210?text=Hi, I have a question about my test drive booking."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-medium"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Contact us on WhatsApp
+                  </a>
+                  <br />
+                  <a 
+                    href="tel:+919876543210"
+                    className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-medium"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call: +91 98765 43210
+                  </a>
+                </div>
+              </div>
             </div>
           )}
 
           <div className="flex justify-end">
-            <Button onClick={handleCloseConfirmation}>Done</Button>
+            <button className="modern-button" onClick={handleCloseConfirmation}>Done</button>
           </div>
         </DialogContent>
       </Dialog>

@@ -12,12 +12,12 @@ export default async function AdminLayout({ children }) {
   }
 
   return (
-    <div className="h-full">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <Header isAdminPage={true} />
-      <div className="flex h-full w-56 flex-col top-20 fixed inset-y-0 z-50">
+      <div className="flex h-full w-64 flex-col top-20 fixed inset-y-0 z-50">
         <Sidebar />
       </div>
-      <main className="md:pl-56 pt-[80px] h-full">{children}</main>
+      <main className="md:pl-64 pt-[80px] min-h-screen">{children}</main>
     </div>
   );
 }

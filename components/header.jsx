@@ -11,8 +11,8 @@ const Header = async ({ isAdminPage = false }) => {
   const isAdmin = user?.role === "ADMIN";
 
   return (
-    <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
-      <nav className="mx-auto px-4 py-4 flex items-center justify-between">
+    <header className="fixed top-0 w-full bg-white/90 backdrop-blur-xl z-50 border-b border-white/20 shadow-lg">
+      <nav className="mx-auto px-6 py-4 flex items-center justify-between">
         <Link href={isAdminPage ? "/admin" : "/"} className="flex">
           <Image
             src={"/logo.png"}
@@ -31,10 +31,10 @@ const Header = async ({ isAdminPage = false }) => {
           {isAdminPage ? (
             <>
               <Link href="/">
-                <Button variant="outline" className="flex items-center gap-2">
+                <button className="modern-button flex items-center gap-2">
                   <ArrowLeft size={18} />
                   <span>Back to App</span>
-                </Button>
+                </button>
               </Link>
             </>
           ) : (
@@ -44,24 +44,24 @@ const Header = async ({ isAdminPage = false }) => {
                   href="/reservations"
                   className="text-gray-600 hover:text-blue-600 flex items-center gap-2"
                 >
-                  <Button variant="outline">
+                  <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-full px-6 py-2 transition-all duration-300 flex items-center gap-2">
                     <CarFront size={18} />
                     <span className="hidden md:inline">My Reservations</span>
-                  </Button>
+                  </button>
                 </Link>
               )}
               <a href="/saved-cars">
-                <Button className="flex items-center gap-2">
+                <button className="modern-button flex items-center gap-2">
                   <Heart size={18} />
                   <span className="hidden md:inline">Saved Cars</span>
-                </Button>
+                </button>
               </a>
               {isAdmin && (
                 <Link href="/admin">
-                  <Button variant="outline" className="flex items-center gap-2">
+                  <button className="bg-gray-900 hover:bg-gray-800 text-white font-semibold rounded-full px-6 py-2 transition-all duration-300 flex items-center gap-2">
                     <Layout size={18} />
                     <span className="hidden md:inline">Admin Portal</span>
-                  </Button>
+                  </button>
                 </Link>
               )}
             </SignedIn>
@@ -70,7 +70,9 @@ const Header = async ({ isAdminPage = false }) => {
           <SignedOut>
             {!isAdminPage && (
               <SignInButton forceRedirectUrl="/">
-                <Button variant="outline">Login</Button>
+                <button className="bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-full px-8 py-2 border-2 border-gray-200 hover:border-[#ffc107] transition-all duration-300">
+                  Login
+                </button>
               </SignInButton>
             )}
           </SignedOut>

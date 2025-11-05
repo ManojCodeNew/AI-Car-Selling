@@ -63,6 +63,11 @@ export async function bookTestDrive({
       },
     });
 
+    // Send WhatsApp notification
+    const whatsappMessage = `🚗 *New Test Drive Booking*\n\n*Car:* ${car.make} ${car.model}\n*Customer:* ${user.name || user.email}\n*Date:* ${bookingDate}\n*Time:* ${startTime} - ${endTime}\n*Notes:* ${notes || 'None'}\n\nPlease confirm this booking.`;
+    const whatsappNumber = "+919876543210"; // Replace with actual business number
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
     // Revalidate relevant paths
     revalidatePath(`/test-drive/${carId}`);
     revalidatePath(`/cars/${carId}`);
@@ -70,6 +75,7 @@ export async function bookTestDrive({
     return {
       success: true,
       data: booking,
+      whatsappUrl,
     };
   } catch (error) {
     console.error("Error booking test drive:", error);
