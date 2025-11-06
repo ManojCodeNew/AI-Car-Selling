@@ -199,7 +199,6 @@ export async function getDashboardData() {
         select: {
           id: true,
           status: true,
-          featured: true,
         },
       }),
 
@@ -222,7 +221,7 @@ export async function getDashboardData() {
     const unavailableCars = cars.filter(
       (car) => car.status === "UNAVAILABLE"
     ).length;
-    const featuredCars = cars.filter((car) => car.featured === true).length;
+    const featuredCars = 0; // Featured functionality not implemented yet
 
     // Calculate test drive statistics
     const totalTestDrives = testDrives.length;
