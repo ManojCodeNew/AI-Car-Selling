@@ -8,8 +8,13 @@ export const metadata = {
 };
 
 export default async function CarsPage() {
-  // Fetch filters data on the server
-  const filtersData = await getCarFilters();
+  // Fetch filters data on the server with error handling
+  let filtersData = { success: false, data: { makes: [], bodyTypes: [], fuelTypes: [], transmissions: [], priceRange: { min: 0, max: 100000 } } };
+  try {
+    filtersData = await getCarFilters();
+  } catch (error) {
+    console.error('Error fetching filters:', error);
+  }
 
   return (
     <div className="container mx-auto px-4 py-12">

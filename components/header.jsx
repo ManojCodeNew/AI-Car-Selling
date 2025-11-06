@@ -69,7 +69,7 @@ const Header = async ({ isAdminPage = false }) => {
 
           <SignedOut>
             {!isAdminPage && (
-              <SignInButton forceRedirectUrl="/">
+              <SignInButton fallbackRedirectUrl="/">
                 <button className="bg-white hover:bg-gray-50 text-gray-900 font-semibold rounded-full px-8 py-2 border-2 border-gray-200 hover:border-[#ffc107] transition-all duration-300">
                   Login
                 </button>
